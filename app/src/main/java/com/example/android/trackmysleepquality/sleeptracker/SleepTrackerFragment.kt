@@ -85,7 +85,16 @@ class SleepTrackerFragment : Fragment(R.layout.fragment_sleep_tracker) {
             }
         }
 
-        val adapter = SleepNightListAdapter { Toast.makeText(context, "$it", Toast.LENGTH_LONG).show() }
+        viewModel.navigateToSleepDetail.observe(viewLifecycleOwner) { nightId ->
+            nightId?.let {
+                this.findNavController().navigate(
+                    SleepTrackerFragmentDirections
+                        .actionSleepTrackerFragmentToSleepDetailFragment(it))
+                viewModel.onSleepDetailNavigated()
+            }
+        }
+
+        val adapter = SleepNightListAdapter { viewModel.onSleepNightClicked(it) }
         viewBinding.sleepList.adapter = adapter
         viewModel.nights.observe(viewLifecycleOwner) {
             it?.let {

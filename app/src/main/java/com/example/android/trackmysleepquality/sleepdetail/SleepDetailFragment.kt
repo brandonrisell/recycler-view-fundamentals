@@ -1,6 +1,7 @@
 package com.example.android.trackmysleepquality.sleepdetail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -10,6 +11,7 @@ import com.example.android.trackmysleepquality.convertDurationToFormatted
 import com.example.android.trackmysleepquality.convertNumericQualityToString
 import com.example.android.trackmysleepquality.database.SleepDatabase
 import com.example.android.trackmysleepquality.databinding.FragmentSleepDetailBinding
+import com.example.android.trackmysleepquality.sleepquality.SleepQualityFragmentArgs
 
 
 /**
@@ -30,7 +32,7 @@ class SleepDetailFragment : Fragment(R.layout.fragment_sleep_detail) {
         val viewBinding = FragmentSleepDetailBinding.bind(view)
 
         val application = requireNotNull(this.activity).application
-        val arguments = SleepDetailFragmentArgs.fromBundle(savedInstanceState ?: Bundle())
+        val arguments = SleepDetailFragmentArgs.fromBundle(requireArguments())
 
         // Create an instance of the ViewModel Factory.
         val dataSource = SleepDatabase.getInstance(application).sleepDatabaseDao
