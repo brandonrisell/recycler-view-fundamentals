@@ -18,6 +18,7 @@ package com.example.android.trackmysleepquality
 
 import android.annotation.SuppressLint
 import android.content.res.Resources
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.text.Html
 import android.text.Spanned

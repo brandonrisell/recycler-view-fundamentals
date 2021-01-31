@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'androidx.navigation.safeargs'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id "androidx.navigation.safeargs.kotlin"
+}
 
 android {
     compileSdkVersion 30
@@ -50,12 +51,16 @@ android {
 
     // Enables data binding.
     buildFeatures {
-        dataBinding true
+        viewBinding true
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 }
 
@@ -73,7 +78,6 @@ dependencies {
     // Room and Lifecycle dependencies
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-runtime:$room_version"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
 
