@@ -98,7 +98,7 @@ class SleepTrackerFragment : Fragment(R.layout.fragment_sleep_tracker) {
         viewBinding.sleepList.adapter = adapter
         viewModel.nights.observe(viewLifecycleOwner) {
             it?.let {
-                adapter.submitList(it)
+                adapter.addHeaderAndSubmitList(it)
             }
         }
 
